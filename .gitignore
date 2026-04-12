@@ -1,0 +1,18 @@
+# Operating system noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor and workspace metadata
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local logs and temporary files
+*.log
+tmp/
+temp/
+
+# Local packaged archives
+*.zip

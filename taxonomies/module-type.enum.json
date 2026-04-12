@@ -1,0 +1,71 @@
+{
+  "taxonomy_id": "module-type",
+  "taxonomy_version": "1.0.0",
+  "field": "module_type",
+  "status": "baseline",
+  "description": "Controlled module_type values for Aurora Polaris MVP module manifests.",
+  "values": [
+    {
+      "value": "Gateway",
+      "definition": "Entry-point module for requests, authentication and policy pre-checks.",
+      "value_class": "stated_in_source",
+      "definition_class": "derived_from_source"
+    },
+    {
+      "value": "Orchestrator",
+      "definition": "Central planning, routing, coordination and risk-confidence assessment module.",
+      "value_class": "stated_in_source",
+      "definition_class": "derived_from_source"
+    },
+    {
+      "value": "Registry",
+      "definition": "Module that manages capabilities, versions, health status and allowed execution contexts.",
+      "value_class": "stated_in_source",
+      "definition_class": "derived_from_source"
+    },
+    {
+      "value": "Policy",
+      "definition": "Module that evaluates policies, blocks violations and applies review thresholds.",
+      "value_class": "stated_in_source",
+      "definition_class": "derived_from_source"
+    },
+    {
+      "value": "Agent",
+      "definition": "Task-specific module that performs controlled domain or workflow work.",
+      "value_class": "stated_in_source",
+      "definition_class": "derived_from_source"
+    },
+    {
+      "value": "Store",
+      "definition": "Module that stores or retrieves context, audit, provenance or knowledge references.",
+      "value_class": "stated_in_source",
+      "definition_class": "derived_from_source"
+    },
+    {
+      "value": "Router",
+      "definition": "Module that routes cases to human review, escalation or fallback paths.",
+      "value_class": "stated_in_source",
+      "definition_class": "derived_from_source"
+    },
+    {
+      "value": "Release Gate",
+      "definition": "Module that controls staged promotion, blocking, rollback candidacy and release decisions.",
+      "value_class": "stated_in_source",
+      "definition_class": "derived_from_source"
+    },
+    {
+      "value": "Dashboard",
+      "definition": "Module that exposes governance, audit, policy and release status for review.",
+      "value_class": "stated_in_source",
+      "definition_class": "derived_from_source"
+    },
+    {
+      "value": "Monitoring",
+      "definition": "Module that processes telemetry, anomalies, drift signals or process-deviation hints for MVP control use.",
+      "value_class": "stated_in_source",
+      "definition_class": "derived_from_source"
+    }
+  ],
+  "closed": true,
+  "class": "derived_from_source"
+}

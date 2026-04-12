@@ -1,0 +1,14 @@
+{
+  "event_id": "mvp-event-model-promoted-001",
+  "event_type": "aurora.model.promoted",
+  "correlation_id": "corr-mvp-seed-005",
+  "actor": "secure-model-releaser",
+  "module_id": "secure-model-releaser",
+  "input_ref": "input-ref-release-001",
+  "output_ref": "output-ref-promotion-001",
+  "decision_ref": "policy-decision-promote-001",
+  "confidence": 0.9,
+  "risk_score": "open",
+  "integrity_marker": "integrity-marker-open",
+  "timestamp": "2026-04-12T10:26:00Z"
+}

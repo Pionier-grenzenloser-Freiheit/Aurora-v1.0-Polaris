@@ -1,0 +1,13 @@
+{
+  "decision_id": "policy-decision-allow-001",
+  "subject": "module-action:api-gateway:policy_precheck",
+  "policy_pack": "open",
+  "decision": "allow",
+  "severity": "info",
+  "rationale": "No blocking control trigger is present for the policy pre-check seed case.",
+  "triggered_rules": [
+    "allow_preconditions_met"
+  ],
+  "requires_human_review": false,
+  "timestamp": "2026-04-12T10:10:00Z"
+}

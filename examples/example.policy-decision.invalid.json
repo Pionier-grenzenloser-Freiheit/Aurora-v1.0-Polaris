@@ -1,0 +1,13 @@
+{
+  "decision_id": "decision-002",
+  "subject": "module-action:polaris-core:plan",
+  "policy_pack": "open",
+  "decision": "approve",
+  "severity": "open",
+  "rationale": "This intentionally uses a decision value outside the controlled enum.",
+  "triggered_rules": [
+    "confidence_below_0_83"
+  ],
+  "requires_human_review": true,
+  "timestamp": "2026-04-12T10:00:00Z"
+}

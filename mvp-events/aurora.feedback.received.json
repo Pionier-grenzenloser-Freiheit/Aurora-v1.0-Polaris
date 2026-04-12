@@ -1,0 +1,14 @@
+{
+  "event_id": "mvp-event-feedback-received-001",
+  "event_type": "aurora.feedback.received",
+  "correlation_id": "corr-mvp-seed-003",
+  "actor": "user",
+  "module_id": "polaris-core",
+  "input_ref": "input-ref-feedback-001",
+  "output_ref": "output-ref-feedback-001",
+  "decision_ref": "policy-decision-allow-001",
+  "confidence": null,
+  "risk_score": "open",
+  "integrity_marker": "integrity-marker-open",
+  "timestamp": "2026-04-12T10:24:00Z"
+}

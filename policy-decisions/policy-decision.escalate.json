@@ -1,0 +1,13 @@
+{
+  "decision_id": "policy-decision-escalate-001",
+  "subject": "module-action:hitl-router:ethics_escalation",
+  "policy_pack": "open",
+  "decision": "escalate",
+  "severity": "high",
+  "rationale": "Ethics deviation requires escalation under the MVP control contract.",
+  "triggered_rules": [
+    "ethics_deviation"
+  ],
+  "requires_human_review": true,
+  "timestamp": "2026-04-12T10:13:00Z"
+}

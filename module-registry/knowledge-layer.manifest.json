@@ -1,0 +1,41 @@
+{
+  "module_id": "knowledge-layer",
+  "module_type": "Store",
+  "version": "1.0.0",
+  "purpose": "Provide MVP context and retrieval references from approved knowledge, metadata and ontology stores.",
+  "capabilities": [
+    "context_retrieval",
+    "semantic_retrieval",
+    "ontology_reference"
+  ],
+  "dependencies": [
+    "audit-store"
+  ],
+  "allowed_connectors": [],
+  "policy_profile": "open",
+  "review_policy": {
+    "rules": [
+      {
+        "trigger": "confidence_below_threshold",
+        "threshold": 0.83,
+        "action": "human_review"
+      },
+      {
+        "trigger": "policy_violation",
+        "action": "block"
+      }
+    ]
+  },
+  "health_signals": [
+    "health",
+    "metrics"
+  ],
+  "output_contract": {
+    "output_type": "knowledge_context",
+    "required_fields": [
+      "context_ref"
+    ],
+    "audit_referenceable": true
+  },
+  "fallback_action": "safe_response"
+}

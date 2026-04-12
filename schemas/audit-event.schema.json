@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "audit-event.schema.json",
+  "title": "Aurora Polaris MVP Audit Event",
+  "description": "Minimal audit and trace event contract. Payloads are represented by references; raw data is outside this minimal schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "event_type",
+    "correlation_id",
+    "actor",
+    "module_id",
+    "input_ref",
+    "output_ref",
+    "decision_ref",
+    "confidence",
+    "risk_score",
+    "integrity_marker",
+    "timestamp"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique event identifier."
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "aurora.context.enriched",
+        "aurora.task.planned",
+        "aurora.agent.result",
+        "aurora.policy.blocked",
+        "aurora.feedback.received",
+        "aurora.drift.detected",
+        "aurora.model.promoted"
+      ],
+      "description": "Event type from the approved MVP event set."
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier linking related request, policy, agent and release events."
+    },
+    "actor": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Triggering actor: user, system, module or reviewer. Taxonomy remains open."
+    },
+    "module_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Referenced MVP module identifier."
+    },
+    "input_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Reference to input, context or artifact. Raw input is outside this schema."
+    },
+    "output_ref": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "description": "Reference to output or artifact. Null is allowed when execution was blocked."
+    },
+    "decision_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Reference to the related policy decision identifier."
+    },
+    "confidence": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Confidence value on a 0..1 scale, or null when not applicable."
+    },
+    "risk_score": {
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        }
+      ],
+      "description": "Risk score or risk class. Exact scale remains open in the source contract."
+    },
+    "integrity_marker": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Integrity marker for traceability. Exact construction remains open."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 date-time timestamp of the event."
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "event_id": "mvp-event-task-planned-001",
+  "event_type": "aurora.task.planned",
+  "correlation_id": "corr-mvp-seed-001",
+  "actor": "polaris-core",
+  "module_id": "polaris-core",
+  "input_ref": "input-ref-task-001",
+  "output_ref": "output-ref-task-plan-001",
+  "decision_ref": "policy-decision-allow-001",
+  "confidence": 0.9,
+  "risk_score": "open",
+  "integrity_marker": "integrity-marker-open",
+  "timestamp": "2026-04-12T10:21:00Z"
+}

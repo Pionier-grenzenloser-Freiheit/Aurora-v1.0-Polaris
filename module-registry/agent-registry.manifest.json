@@ -1,0 +1,42 @@
+{
+  "module_id": "agent-registry",
+  "module_type": "Registry",
+  "version": "1.0.0",
+  "purpose": "Manage MVP module capabilities, versions, health status and allowed execution contexts.",
+  "capabilities": [
+    "capability_lookup",
+    "module_status_tracking",
+    "execution_context_control"
+  ],
+  "dependencies": [
+    "audit-store"
+  ],
+  "allowed_connectors": [],
+  "policy_profile": "open",
+  "review_policy": {
+    "rules": [
+      {
+        "trigger": "confidence_below_threshold",
+        "threshold": 0.83,
+        "action": "human_review"
+      },
+      {
+        "trigger": "policy_violation",
+        "action": "block"
+      }
+    ]
+  },
+  "health_signals": [
+    "health",
+    "metrics"
+  ],
+  "output_contract": {
+    "output_type": "registry_resolution",
+    "required_fields": [
+      "module_id",
+      "capabilities_ref"
+    ],
+    "audit_referenceable": true
+  },
+  "fallback_action": "block"
+}

@@ -1,0 +1,17 @@
+{
+  "event_id": "event-003",
+  "event_type": "aurora.policy.blocked",
+  "correlation_id": "corr-002",
+  "actor": "policy-engine",
+  "module_id": "policy-engine",
+  "input_ref": "input-ref-002",
+  "output_ref": null,
+  "decision_ref": "decision-003",
+  "confidence": null,
+  "risk_score": "open",
+  "integrity_marker": "integrity-marker-open",
+  "timestamp": "2026-04-12T10:02:00Z",
+  "triggered_rules": [
+    "policy_violation"
+  ]
+}

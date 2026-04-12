@@ -1,0 +1,13 @@
+{
+  "decision_id": "policy-decision-promote-001",
+  "subject": "release-step:secure-model-releaser:guarded-pilot-to-canary",
+  "policy_pack": "open",
+  "decision": "promote",
+  "severity": "medium",
+  "rationale": "Release gate promotion is represented as an auditable seed decision without asserting production deployment.",
+  "triggered_rules": [
+    "release_gate_requirements_met"
+  ],
+  "requires_human_review": false,
+  "timestamp": "2026-04-12T10:14:00Z"
+}

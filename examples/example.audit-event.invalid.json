@@ -1,0 +1,14 @@
+{
+  "event_id": "event-002",
+  "event_type": "aurora.agent.result",
+  "correlation_id": "corr-001",
+  "actor": "polaris-core",
+  "module_id": "polaris-core",
+  "input_ref": "input-ref-001",
+  "output_ref": "output-ref-001",
+  "decision_ref": "decision-001",
+  "confidence": 1.2,
+  "risk_score": "open",
+  "integrity_marker": "integrity-marker-open",
+  "timestamp": "2026-04-12T10:01:00Z"
+}

@@ -1,0 +1,37 @@
+{
+  "module_id": "polaris-core",
+  "module_type": "Orchestrator",
+  "version": "1.0.0",
+  "purpose": "Planning, routing and risk-confidence assessment for the regulated MVP.",
+  "capabilities": [
+    "task_planning",
+    "routing",
+    "risk_assessment"
+  ],
+  "dependencies": [
+    "agent-registry",
+    "policy-engine",
+    "audit-store"
+  ],
+  "allowed_connectors": [],
+  "policy_profile": "open",
+  "review_policy": {
+    "rules": [
+      {
+        "trigger": "confidence_below_threshold",
+        "threshold": 0.83,
+        "action": "human_review"
+      }
+    ]
+  },
+  "health_signals": [
+    "health",
+    "metrics"
+  ],
+  "output_contract": {
+    "output_type": "task_plan",
+    "required_fields": [],
+    "audit_referenceable": true
+  },
+  "fallback_action": "human_review"
+}

@@ -1,0 +1,13 @@
+{
+  "decision_id": "policy-decision-rollback-candidate-001",
+  "subject": "module-action:secure-model-releaser:rollback_candidate_management",
+  "policy_pack": "open",
+  "decision": "rollback_candidate",
+  "severity": "critical",
+  "rationale": "Drift signal marks the release path as a rollback candidate for controlled review.",
+  "triggered_rules": [
+    "drift_detected"
+  ],
+  "requires_human_review": true,
+  "timestamp": "2026-04-12T10:15:00Z"
+}

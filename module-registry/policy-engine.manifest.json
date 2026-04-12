@@ -1,0 +1,41 @@
+{
+  "module_id": "policy-engine",
+  "module_type": "Policy",
+  "version": "1.0.0",
+  "purpose": "Evaluate policies, block policy violations and apply review thresholds for MVP control decisions.",
+  "capabilities": [
+    "policy_evaluation",
+    "policy_blocking",
+    "review_threshold_application"
+  ],
+  "dependencies": [
+    "audit-store"
+  ],
+  "allowed_connectors": [],
+  "policy_profile": "open",
+  "review_policy": {
+    "rules": [
+      {
+        "trigger": "confidence_below_threshold",
+        "threshold": 0.83,
+        "action": "human_review"
+      },
+      {
+        "trigger": "policy_violation",
+        "action": "block"
+      }
+    ]
+  },
+  "health_signals": [
+    "health",
+    "metrics"
+  ],
+  "output_contract": {
+    "output_type": "policy_decision",
+    "required_fields": [
+      "decision_ref"
+    ],
+    "audit_referenceable": true
+  },
+  "fallback_action": "block"
+}
