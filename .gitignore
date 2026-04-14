@@ -1,18 +1,20 @@
-# Operating system noise
+# OS / editor
 .DS_Store
 Thumbs.db
-desktop.ini
-
-# Editor and workspace metadata
-.idea/
 .vscode/
-*.swp
-*.swo
+.idea/
 
-# Local logs and temporary files
+# Python
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Logs
 *.log
-tmp/
-temp/
 
-# Local packaged archives
+# Archives
 *.zip
+*.tar
+*.gz
