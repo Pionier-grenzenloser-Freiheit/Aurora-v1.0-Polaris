@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Connector Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tool": { "type": "string", "pattern": "^tool\\.[a-z0-9_]+$" },
+        "params": { "type": "object" },
+        "meta": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "trace_id": { "type": "string" },
+            "audit_id": { "type": "string" },
+            "caller": { "type": "string" },
+            "rbac": { "type": "array", "items": { "type": "string" } },
+            "rate_budget": { "type": "integer", "minimum": 0 }
+          }
+        }
+      },
+      "required": ["tool", "params"]
+    },
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": { "type": "string", "enum": ["ok", "error"] },
+        "result": { "type": ["object", "array", "string", "number", "boolean"] },
+        "meta": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "duration_ms": { "type": "integer", "minimum": 0 },
+            "provider_request_id": { "type": "string" },
+            "warnings": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "error": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "code": { "type": "string" },
+            "message": { "type": "string" }
+          }
+        }
+      },
+      "required": ["status", "meta"]
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sig_alg": { "type": "string", "enum": ["HMAC-SHA256", "Ed25519"] },
+        "key_id": { "type": "string" },
+        "canonical_payload_hash": { "type": "string" },
+        "signature": { "type": "string" }
+      },
+      "required": ["sig_alg", "key_id", "signature"]
+    }
+  },
+  "required": ["request", "response", "signature"]
+}
