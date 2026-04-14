@@ -1,0 +1,14 @@
+{
+  "event_id": "mvp-event-drift-detected-001",
+  "event_type": "aurora.drift.detected",
+  "correlation_id": "corr-mvp-seed-004",
+  "actor": "monitoring-hub",
+  "module_id": "monitoring-hub",
+  "input_ref": "input-ref-monitoring-001",
+  "output_ref": "output-ref-drift-signal-001",
+  "decision_ref": "policy-decision-rollback-candidate-001",
+  "confidence": 0.86,
+  "risk_score": "open",
+  "integrity_marker": "integrity-marker-open",
+  "timestamp": "2026-04-12T10:25:00Z"
+}

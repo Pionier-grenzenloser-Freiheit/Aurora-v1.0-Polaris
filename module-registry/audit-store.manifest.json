@@ -1,0 +1,40 @@
+{
+  "module_id": "audit-store",
+  "module_type": "Store",
+  "version": "1.0.0",
+  "purpose": "Store audit events, provenance references, decision traces and integrity-marker references for MVP control.",
+  "capabilities": [
+    "audit_trace_recording",
+    "provenance_reference_storage",
+    "integrity_marker_reference"
+  ],
+  "dependencies": [],
+  "allowed_connectors": [],
+  "policy_profile": "open",
+  "review_policy": {
+    "rules": [
+      {
+        "trigger": "confidence_below_threshold",
+        "threshold": 0.83,
+        "action": "human_review"
+      },
+      {
+        "trigger": "policy_violation",
+        "action": "block"
+      }
+    ]
+  },
+  "health_signals": [
+    "health",
+    "metrics"
+  ],
+  "output_contract": {
+    "output_type": "audit_record",
+    "required_fields": [
+      "event_ref",
+      "integrity_marker"
+    ],
+    "audit_referenceable": true
+  },
+  "fallback_action": "block"
+}

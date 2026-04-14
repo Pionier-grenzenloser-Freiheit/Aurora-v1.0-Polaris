@@ -1,0 +1,43 @@
+{
+  "module_id": "context-prompt-engine",
+  "module_type": "Agent",
+  "version": "1.0.0",
+  "purpose": "Structure request context, ontology references and prompt packages for controlled MVP execution.",
+  "capabilities": [
+    "context_structuring",
+    "prompt_package_generation",
+    "ontology_mapping"
+  ],
+  "dependencies": [
+    "knowledge-layer",
+    "audit-store"
+  ],
+  "allowed_connectors": [],
+  "policy_profile": "open",
+  "review_policy": {
+    "rules": [
+      {
+        "trigger": "confidence_below_threshold",
+        "threshold": 0.83,
+        "action": "human_review"
+      },
+      {
+        "trigger": "policy_violation",
+        "action": "block"
+      }
+    ]
+  },
+  "health_signals": [
+    "health",
+    "metrics"
+  ],
+  "output_contract": {
+    "output_type": "context_prompt_package",
+    "required_fields": [
+      "context_ref",
+      "prompt_package_ref"
+    ],
+    "audit_referenceable": true
+  },
+  "fallback_action": "safe_response"
+}

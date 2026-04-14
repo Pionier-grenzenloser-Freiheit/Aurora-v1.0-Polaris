@@ -1,0 +1,44 @@
+{
+  "module_id": "secure-model-releaser",
+  "module_type": "Release Gate",
+  "version": "1.0.0",
+  "purpose": "Control staged model release gates, promotion decisions, canary handling and rollback candidacy for the regulated MVP.",
+  "capabilities": [
+    "release_gate_evaluation",
+    "staged_promotion",
+    "rollback_candidate_management"
+  ],
+  "dependencies": [
+    "policy-engine",
+    "audit-store",
+    "hitl-router"
+  ],
+  "allowed_connectors": [],
+  "policy_profile": "open",
+  "review_policy": {
+    "rules": [
+      {
+        "trigger": "confidence_below_threshold",
+        "threshold": 0.83,
+        "action": "human_review"
+      },
+      {
+        "trigger": "policy_violation",
+        "action": "block"
+      }
+    ]
+  },
+  "health_signals": [
+    "health",
+    "metrics"
+  ],
+  "output_contract": {
+    "output_type": "release_gate_decision",
+    "required_fields": [
+      "release_stage",
+      "decision_ref"
+    ],
+    "audit_referenceable": true
+  },
+  "fallback_action": "rollback_candidate"
+}

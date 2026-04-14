@@ -1,0 +1,13 @@
+{
+  "decision_id": "decision-001",
+  "subject": "module-action:polaris-core:plan",
+  "policy_pack": "open",
+  "decision": "require_human_review",
+  "severity": "open",
+  "rationale": "Confidence threshold requires human review according to the MVP control contract.",
+  "triggered_rules": [
+    "confidence_below_0_83"
+  ],
+  "requires_human_review": true,
+  "timestamp": "2026-04-12T10:00:00Z"
+}

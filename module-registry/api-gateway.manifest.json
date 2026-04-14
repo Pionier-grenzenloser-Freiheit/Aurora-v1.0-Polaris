@@ -1,0 +1,43 @@
+{
+  "module_id": "api-gateway",
+  "module_type": "Gateway",
+  "version": "1.0.0",
+  "purpose": "Entry point for request intake, authentication pre-check and policy pre-check in the regulated MVP.",
+  "capabilities": [
+    "request_intake",
+    "authentication_precheck",
+    "policy_precheck"
+  ],
+  "dependencies": [
+    "policy-engine",
+    "audit-store"
+  ],
+  "allowed_connectors": [],
+  "policy_profile": "open",
+  "review_policy": {
+    "rules": [
+      {
+        "trigger": "confidence_below_threshold",
+        "threshold": 0.83,
+        "action": "human_review"
+      },
+      {
+        "trigger": "policy_violation",
+        "action": "block"
+      }
+    ]
+  },
+  "health_signals": [
+    "health",
+    "metrics"
+  ],
+  "output_contract": {
+    "output_type": "gateway_intake",
+    "required_fields": [
+      "input_ref",
+      "policy_precheck_ref"
+    ],
+    "audit_referenceable": true
+  },
+  "fallback_action": "block"
+}

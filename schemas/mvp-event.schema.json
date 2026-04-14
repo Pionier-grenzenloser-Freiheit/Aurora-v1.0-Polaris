@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "mvp-event.schema.json",
+  "title": "Aurora Polaris MVP Event",
+  "description": "MVP event schema covering the approved Aurora Polaris MVP event set. It repeats the audit-event field contract to remain standalone and fail-closed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "event_type",
+    "correlation_id",
+    "actor",
+    "module_id",
+    "input_ref",
+    "output_ref",
+    "decision_ref",
+    "confidence",
+    "risk_score",
+    "integrity_marker",
+    "timestamp"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique event identifier."
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "aurora.context.enriched",
+        "aurora.task.planned",
+        "aurora.agent.result",
+        "aurora.policy.blocked",
+        "aurora.feedback.received",
+        "aurora.drift.detected",
+        "aurora.model.promoted"
+      ],
+      "description": "Event type from the approved MVP event set."
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier linking related request, policy, agent and release events."
+    },
+    "actor": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Triggering actor: user, system, module or reviewer. Taxonomy remains open."
+    },
+    "module_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Referenced MVP module identifier."
+    },
+    "input_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Reference to input, context or artifact. Raw input is outside this schema."
+    },
+    "output_ref": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1,
+      "description": "Reference to output or artifact. Null is allowed when execution was blocked."
+    },
+    "decision_ref": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Reference to the related policy decision identifier."
+    },
+    "confidence": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Confidence value on a 0..1 scale, or null when not applicable."
+    },
+    "risk_score": {
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        }
+      ],
+      "description": "Risk score or risk class. Exact scale remains open in the source contract."
+    },
+    "integrity_marker": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Integrity marker for traceability. Exact construction remains open."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 date-time timestamp of the event."
+    },
+    "triggered_rules": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Triggered rules, thresholds or control points. Required for aurora.policy.blocked."
+    }
+  },
+  "oneOf": [
+    {
+      "description": "Context was enriched and classified.",
+      "properties": {
+        "event_type": {
+          "const": "aurora.context.enriched"
+        }
+      },
+      "required": [
+        "event_type",
+        "input_ref",
+        "output_ref",
+        "risk_score"
+      ]
+    },
+    {
+      "description": "Polaris Core created an execution plan.",
+      "properties": {
+        "event_type": {
+          "const": "aurora.task.planned"
+        }
+      },
+      "required": [
+        "event_type",
+        "module_id",
+        "output_ref",
+        "decision_ref"
+      ]
+    },
+    {
+      "description": "An agent delivered a partial result.",
+      "properties": {
+        "event_type": {
+          "const": "aurora.agent.result"
+        }
+      },
+      "required": [
+        "event_type",
+        "module_id",
+        "output_ref",
+        "confidence"
+      ]
+    },
+    {
+      "description": "Policy Engine blocked execution, response or promotion.",
+      "properties": {
+        "event_type": {
+          "const": "aurora.policy.blocked"
+        }
+      },
+      "required": [
+        "event_type",
+        "decision_ref",
+        "triggered_rules",
+        "risk_score"
+      ]
+    },
+    {
+      "description": "User or system feedback was received.",
+      "properties": {
+        "event_type": {
+          "const": "aurora.feedback.received"
+        }
+      },
+      "required": [
+        "event_type",
+        "actor",
+        "input_ref",
+        "correlation_id"
+      ]
+    },
+    {
+      "description": "Drift or unusual deviation was detected.",
+      "properties": {
+        "event_type": {
+          "const": "aurora.drift.detected"
+        }
+      },
+      "required": [
+        "event_type",
+        "module_id",
+        "risk_score",
+        "decision_ref"
+      ]
+    },
+    {
+      "description": "A model was promoted to a higher release stage.",
+      "properties": {
+        "event_type": {
+          "const": "aurora.model.promoted"
+        }
+      },
+      "required": [
+        "event_type",
+        "module_id",
+        "decision_ref",
+        "output_ref"
+      ]
+    }
+  ]
+}

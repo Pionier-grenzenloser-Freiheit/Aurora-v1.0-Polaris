@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "module-manifest.schema.json",
+  "title": "Aurora Polaris MVP Module Manifest",
+  "description": "Minimal module manifest contract for MVP-relevant Aurora Polaris modules. Derived only from the approved Polaris control contract.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "module_id",
+    "module_type",
+    "version",
+    "purpose",
+    "capabilities",
+    "dependencies",
+    "allowed_connectors",
+    "policy_profile",
+    "review_policy",
+    "health_signals",
+    "output_contract",
+    "fallback_action"
+  ],
+  "properties": {
+    "module_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable technical module identifier, unique within the MVP context."
+    },
+    "module_type": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Open taxonomy. Source examples include Gateway, Orchestrator, Registry, Policy, Agent, Store, Router, Release Gate and Dashboard."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$",
+      "description": "Versioned module state. SemVer is the stated target standard."
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Concise purpose of the module in the MVP."
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Allowed capabilities of the module."
+    },
+    "dependencies": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Required internal modules, stores, policies or control surfaces. An empty list is allowed."
+    },
+    "allowed_connectors": {
+      "oneOf": [
+        {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        {
+          "type": "string",
+          "const": "conceptual_only"
+        }
+      ],
+      "description": "Allowed connectors. External connectors require explicit approval; use an empty array or conceptual_only when no operational connector is approved."
+    },
+    "policy_profile": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Assigned policy profile, or open if not yet specified."
+    },
+    "review_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rules"
+      ],
+      "properties": {
+        "rules": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "trigger",
+              "action"
+            ],
+            "properties": {
+              "trigger": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Review trigger, for example confidence below threshold or policy violation."
+              },
+              "threshold": {
+                "type": [
+                  "number",
+                  "string",
+                  "null"
+                ],
+                "description": "Optional threshold value. The contract states Confidence < 0.83 as a HITL trigger; other threshold taxonomies remain open."
+              },
+              "action": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Review or escalation action."
+              }
+            }
+          }
+        }
+      }
+    },
+    "health_signals": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Minimal operational and control signals visible through health or metrics surfaces."
+    },
+    "output_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "output_type",
+        "required_fields",
+        "audit_referenceable"
+      ],
+      "properties": {
+        "output_type": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Expected output type."
+        },
+        "required_fields": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Required output fields for the module output."
+        },
+        "audit_referenceable": {
+          "type": "boolean",
+          "description": "Whether the output can be referenced by audit events."
+        }
+      }
+    },
+    "fallback_action": {
+      "type": "string",
+      "enum": [
+        "block",
+        "human_review",
+        "safe_response",
+        "rollback_candidate"
+      ],
+      "description": "Controlled fallback action from the approved control contract."
+    }
+  }
+}

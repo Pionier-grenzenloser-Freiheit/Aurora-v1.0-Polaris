@@ -1,0 +1,43 @@
+{
+  "module_id": "legal-compliance-assessor",
+  "module_type": "Agent",
+  "version": "1.0.0",
+  "purpose": "Assess regulatory requirements, produce compliance status and support workflow gating for the regulated MVP.",
+  "capabilities": [
+    "regulatory_assessment",
+    "checklist_generation",
+    "workflow_gating"
+  ],
+  "dependencies": [
+    "policy-engine",
+    "audit-store"
+  ],
+  "allowed_connectors": [],
+  "policy_profile": "open",
+  "review_policy": {
+    "rules": [
+      {
+        "trigger": "confidence_below_threshold",
+        "threshold": 0.83,
+        "action": "human_review"
+      },
+      {
+        "trigger": "policy_violation",
+        "action": "block"
+      }
+    ]
+  },
+  "health_signals": [
+    "health",
+    "metrics"
+  ],
+  "output_contract": {
+    "output_type": "compliance_assessment",
+    "required_fields": [
+      "compliance_status",
+      "audit_points_ref"
+    ],
+    "audit_referenceable": true
+  },
+  "fallback_action": "human_review"
+}

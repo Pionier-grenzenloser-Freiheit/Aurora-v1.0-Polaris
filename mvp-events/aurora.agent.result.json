@@ -1,0 +1,14 @@
+{
+  "event_id": "mvp-event-agent-result-001",
+  "event_type": "aurora.agent.result",
+  "correlation_id": "corr-mvp-seed-001",
+  "actor": "legal-compliance-assessor",
+  "module_id": "legal-compliance-assessor",
+  "input_ref": "input-ref-agent-001",
+  "output_ref": "output-ref-compliance-assessment-001",
+  "decision_ref": "policy-decision-allow-001",
+  "confidence": 0.88,
+  "risk_score": "open",
+  "integrity_marker": "integrity-marker-open",
+  "timestamp": "2026-04-12T10:22:00Z"
+}

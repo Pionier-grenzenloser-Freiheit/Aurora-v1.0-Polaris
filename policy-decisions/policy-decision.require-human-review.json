@@ -1,0 +1,13 @@
+{
+  "decision_id": "policy-decision-require-human-review-001",
+  "subject": "module-action:hitl-router:human_review_routing",
+  "policy_pack": "open",
+  "decision": "require_human_review",
+  "severity": "high",
+  "rationale": "Confidence below the MVP threshold requires Human-in-the-Loop review.",
+  "triggered_rules": [
+    "confidence_below_0_83"
+  ],
+  "requires_human_review": true,
+  "timestamp": "2026-04-12T10:12:00Z"
+}

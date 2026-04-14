@@ -1,0 +1,43 @@
+{
+  "module_id": "governance-dashboard",
+  "module_type": "Dashboard",
+  "version": "1.0.0",
+  "purpose": "Expose MVP audit, compliance, policy and release status for governance review.",
+  "capabilities": [
+    "governance_status_view",
+    "audit_status_view",
+    "release_status_view"
+  ],
+  "dependencies": [
+    "audit-store",
+    "policy-engine",
+    "secure-model-releaser"
+  ],
+  "allowed_connectors": [],
+  "policy_profile": "open",
+  "review_policy": {
+    "rules": [
+      {
+        "trigger": "confidence_below_threshold",
+        "threshold": 0.83,
+        "action": "human_review"
+      },
+      {
+        "trigger": "policy_violation",
+        "action": "block"
+      }
+    ]
+  },
+  "health_signals": [
+    "health",
+    "metrics"
+  ],
+  "output_contract": {
+    "output_type": "governance_view",
+    "required_fields": [
+      "status_ref"
+    ],
+    "audit_referenceable": true
+  },
+  "fallback_action": "safe_response"
+}

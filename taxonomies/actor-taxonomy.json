@@ -1,0 +1,41 @@
+{
+  "taxonomy_id": "actor-class-taxonomy",
+  "taxonomy_version": "1.0.0",
+  "field": "actor_class",
+  "status": "baseline",
+  "description": "Controlled actor classes for audit and MVP events. This taxonomy classifies actors; it is not a direct enum restriction for the current actor field.",
+  "baseline_compatibility": {
+    "schema_field": "actor",
+    "rule": "The current schema field actor remains an open string because valid baseline examples use concrete actor identifiers such as polaris-core and policy-engine.",
+    "class": "target_assumption"
+  },
+  "values": [
+    {
+      "value": "user",
+      "definition": "Human or client-side requester that initiates or contributes to a controlled event.",
+      "value_class": "stated_in_source",
+      "definition_class": "derived_from_source"
+    },
+    {
+      "value": "system",
+      "definition": "Aurora-controlled system process that emits or triggers an event.",
+      "value_class": "stated_in_source",
+      "definition_class": "derived_from_source"
+    },
+    {
+      "value": "module",
+      "definition": "MVP module acting as the event source or control participant.",
+      "value_class": "stated_in_source",
+      "definition_class": "derived_from_source"
+    },
+    {
+      "value": "reviewer",
+      "definition": "Human reviewer involved through Human-in-the-Loop, double review or escalation.",
+      "value_class": "stated_in_source",
+      "definition_class": "derived_from_source"
+    }
+  ],
+  "closed_for_actor_class": true,
+  "closed_for_actor": false,
+  "class": "derived_from_source"
+}

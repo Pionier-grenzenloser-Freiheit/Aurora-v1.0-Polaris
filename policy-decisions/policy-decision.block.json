@@ -1,0 +1,13 @@
+{
+  "decision_id": "policy-decision-block-001",
+  "subject": "module-action:policy-engine:policy_evaluation",
+  "policy_pack": "open",
+  "decision": "block",
+  "severity": "critical",
+  "rationale": "Policy violation requires blocking and auditability in the MVP control contract.",
+  "triggered_rules": [
+    "policy_violation"
+  ],
+  "requires_human_review": false,
+  "timestamp": "2026-04-12T10:11:00Z"
+}

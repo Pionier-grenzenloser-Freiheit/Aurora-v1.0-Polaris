@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "policy-decision.schema.json",
+  "title": "Aurora Polaris MVP Policy Decision",
+  "description": "Minimal policy decision contract for controlled execution, blocking, escalation and promotion.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "decision_id",
+    "subject",
+    "policy_pack",
+    "decision",
+    "severity",
+    "rationale",
+    "triggered_rules",
+    "requires_human_review",
+    "timestamp"
+  ],
+  "properties": {
+    "decision_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique identifier of the policy decision."
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Affected request, task, module action, response or release promotion."
+    },
+    "policy_pack": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Applied policy catalogue or open if not yet specified. Taxonomy remains open."
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "allow",
+        "block",
+        "require_human_review",
+        "escalate",
+        "promote",
+        "rollback_candidate"
+      ],
+      "description": "Controlled decision value from the approved control contract."
+    },
+    "severity": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Open severity taxonomy. Final value list is intentionally not closed in the source contract."
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Short rationale for the decision without internal reasoning traces."
+    },
+    "triggered_rules": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Triggered rules, thresholds or control points."
+    },
+    "requires_human_review": {
+      "type": "boolean",
+      "description": "True when HITL triggers or incomplete evidence require review."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 date-time timestamp of the decision."
+    }
+  }
+}

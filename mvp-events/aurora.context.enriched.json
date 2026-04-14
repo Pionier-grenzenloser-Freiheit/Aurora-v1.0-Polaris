@@ -1,0 +1,14 @@
+{
+  "event_id": "mvp-event-context-enriched-001",
+  "event_type": "aurora.context.enriched",
+  "correlation_id": "corr-mvp-seed-001",
+  "actor": "context-prompt-engine",
+  "module_id": "context-prompt-engine",
+  "input_ref": "input-ref-context-001",
+  "output_ref": "output-ref-context-001",
+  "decision_ref": "policy-decision-allow-001",
+  "confidence": 0.91,
+  "risk_score": "open",
+  "integrity_marker": "integrity-marker-open",
+  "timestamp": "2026-04-12T10:20:00Z"
+}

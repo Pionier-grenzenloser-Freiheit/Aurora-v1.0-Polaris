@@ -1,0 +1,43 @@
+{
+  "module_id": "monitoring-hub",
+  "module_type": "Monitoring",
+  "version": "1.0.0",
+  "purpose": "Process telemetry, anomaly indicators, drift hints and process-deviation signals for MVP control workflows.",
+  "capabilities": [
+    "telemetry_processing",
+    "anomaly_detection",
+    "drift_signal_handling"
+  ],
+  "dependencies": [
+    "policy-engine",
+    "audit-store"
+  ],
+  "allowed_connectors": [],
+  "policy_profile": "open",
+  "review_policy": {
+    "rules": [
+      {
+        "trigger": "confidence_below_threshold",
+        "threshold": 0.83,
+        "action": "human_review"
+      },
+      {
+        "trigger": "policy_violation",
+        "action": "block"
+      }
+    ]
+  },
+  "health_signals": [
+    "health",
+    "metrics"
+  ],
+  "output_contract": {
+    "output_type": "monitoring_signal",
+    "required_fields": [
+      "signal_ref",
+      "risk_score"
+    ],
+    "audit_referenceable": true
+  },
+  "fallback_action": "human_review"
+}

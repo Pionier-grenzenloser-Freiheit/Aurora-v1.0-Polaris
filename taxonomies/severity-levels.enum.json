@@ -1,0 +1,54 @@
+{
+  "taxonomy_id": "severity-levels",
+  "taxonomy_version": "1.0.0",
+  "field": "severity",
+  "status": "baseline_ready",
+  "description": "Controlled severity values for policy decisions. The source marks the final severity taxonomy as open; this pack includes open to remain compatible with the current schema baseline and examples.",
+  "values": [
+    {
+      "value": "info",
+      "definition": "Audit-relevant decision without blocking, escalation or review requirement.",
+      "use_when": "Use when the decision is recorded for traceability only.",
+      "class": "target_assumption"
+    },
+    {
+      "value": "low",
+      "definition": "Non-blocking control finding with no immediate human review requirement.",
+      "use_when": "Use when execution may continue and the finding remains auditable.",
+      "class": "target_assumption"
+    },
+    {
+      "value": "medium",
+      "definition": "Control finding that requires explicit rationale and may require review depending on triggered rules.",
+      "use_when": "Use when risk is material but no mandatory HITL trigger is active.",
+      "class": "target_assumption"
+    },
+    {
+      "value": "high",
+      "definition": "Control finding that requires human review, escalation or release-gate attention.",
+      "use_when": "Use when a HITL trigger, policy issue or missing required evidence prevents direct allow.",
+      "class": "target_assumption"
+    },
+    {
+      "value": "critical",
+      "definition": "Blocking control finding or rollback candidate.",
+      "use_when": "Use when the decision is block, rollback_candidate or unresolved high-risk release control.",
+      "class": "target_assumption"
+    },
+    {
+      "value": "open",
+      "definition": "Severity is not yet classified or the applicable taxonomy has not been finalized.",
+      "use_when": "Use when the current schema baseline must remain compatible with open policy-decision severity values.",
+      "class": "target_assumption"
+    }
+  ],
+  "closed": true,
+  "schema_application": {
+    "rule": "Do not hard-apply this enum to the baseline schema unless severity: open remains valid.",
+    "class": "target_assumption"
+  },
+  "source_note": {
+    "text": "The approved control contract states that the final severity taxonomy is open.",
+    "class": "open"
+  }
+}

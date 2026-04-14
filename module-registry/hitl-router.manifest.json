@@ -1,0 +1,43 @@
+{
+  "module_id": "hitl-router",
+  "module_type": "Router",
+  "version": "1.0.0",
+  "purpose": "Route cases to human review, double review or escalation when MVP control thresholds require it.",
+  "capabilities": [
+    "human_review_routing",
+    "double_review_escalation",
+    "ethics_escalation"
+  ],
+  "dependencies": [
+    "policy-engine",
+    "audit-store"
+  ],
+  "allowed_connectors": [],
+  "policy_profile": "open",
+  "review_policy": {
+    "rules": [
+      {
+        "trigger": "confidence_below_threshold",
+        "threshold": 0.83,
+        "action": "human_review"
+      },
+      {
+        "trigger": "policy_violation",
+        "action": "block"
+      }
+    ]
+  },
+  "health_signals": [
+    "health",
+    "metrics"
+  ],
+  "output_contract": {
+    "output_type": "review_route",
+    "required_fields": [
+      "review_required",
+      "route_ref"
+    ],
+    "audit_referenceable": true
+  },
+  "fallback_action": "human_review"
+}

@@ -1,0 +1,204 @@
+{
+  "bundle_id": "polaris-baseline-bundle",
+  "bundle_version": "1.0.0",
+  "status": "baseline-ready",
+  "artifacts": [
+    {
+      "artifact_id": "polaris-taxonomy-pack",
+      "path": "releases/polaris-taxonomy-pack__release-note__v1.0.0.md",
+      "kind": "release-note",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "polaris-core",
+        "schema-pack"
+      ]
+    },
+    {
+      "artifact_id": "module-type-enum",
+      "path": "taxonomies/module-type.enum.json",
+      "kind": "taxonomy",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "polaris-taxonomy-pack"
+      ]
+    },
+    {
+      "artifact_id": "severity-levels-enum",
+      "path": "taxonomies/severity-levels.enum.json",
+      "kind": "taxonomy",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "polaris-taxonomy-pack"
+      ]
+    },
+    {
+      "artifact_id": "policy-pack-ids",
+      "path": "taxonomies/policy-pack-ids.json",
+      "kind": "taxonomy",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "polaris-taxonomy-pack"
+      ]
+    },
+    {
+      "artifact_id": "actor-class-taxonomy",
+      "path": "taxonomies/actor-taxonomy.json",
+      "kind": "taxonomy",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "polaris-taxonomy-pack"
+      ]
+    },
+    {
+      "artifact_id": "risk-score-model",
+      "path": "taxonomies/risk-score-model.md",
+      "kind": "taxonomy-note",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "polaris-taxonomy-pack"
+      ]
+    },
+    {
+      "artifact_id": "integrity-marker-format",
+      "path": "taxonomies/integrity-marker-format.md",
+      "kind": "taxonomy-note",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "polaris-taxonomy-pack"
+      ]
+    },
+    {
+      "artifact_id": "polaris-mvp-module-registry-pack",
+      "path": "releases/polaris-mvp-module-registry-pack__release-note__v1.0.0.md",
+      "kind": "release-note",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "module-manifest.schema.json",
+        "polaris-taxonomy-pack"
+      ]
+    },
+    {
+      "artifact_id": "module-registry",
+      "path": "module-registry/",
+      "kind": "manifest-directory",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "polaris-mvp-module-registry-pack"
+      ]
+    },
+    {
+      "artifact_id": "polaris-mvp-policy-decision-pack",
+      "path": "releases/polaris-mvp-policy-decision-pack__release-note__v1.0.0.md",
+      "kind": "release-note",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "policy-decision.schema.json",
+        "polaris-taxonomy-pack",
+        "polaris-mvp-module-registry-pack"
+      ]
+    },
+    {
+      "artifact_id": "policy-decisions",
+      "path": "policy-decisions/",
+      "kind": "decision-directory",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "polaris-mvp-policy-decision-pack"
+      ]
+    },
+    {
+      "artifact_id": "polaris-mvp-event-pack",
+      "path": "releases/polaris-mvp-event-pack__release-note__v1.0.0.md",
+      "kind": "release-note",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "mvp-event.schema.json",
+        "polaris-taxonomy-pack",
+        "polaris-mvp-module-registry-pack",
+        "polaris-mvp-policy-decision-pack"
+      ]
+    },
+    {
+      "artifact_id": "mvp-events",
+      "path": "mvp-events/",
+      "kind": "event-directory",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "polaris-mvp-event-pack"
+      ]
+    },
+    {
+      "artifact_id": "polaris-baseline-index",
+      "path": "releases/polaris-baseline-index__v1.0.0.md",
+      "kind": "baseline-index",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "polaris-taxonomy-pack",
+        "polaris-mvp-module-registry-pack",
+        "polaris-mvp-policy-decision-pack",
+        "polaris-mvp-event-pack"
+      ]
+    },
+    {
+      "artifact_id": "polaris-baseline-dependency-map",
+      "path": "releases/polaris-baseline-dependency-map__v1.0.0.md",
+      "kind": "dependency-map",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "polaris-baseline-index"
+      ]
+    },
+    {
+      "artifact_id": "polaris-baseline-validation-report",
+      "path": "releases/polaris-baseline-validation-report__v1.0.0.md",
+      "kind": "validation-report",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "module-registry",
+        "policy-decisions",
+        "mvp-events"
+      ]
+    },
+    {
+      "artifact_id": "polaris-baseline-artifact-manifest",
+      "path": "releases/polaris-baseline-artifact-manifest__v1.0.0.json",
+      "kind": "artifact-manifest",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "polaris-baseline-index",
+        "polaris-baseline-dependency-map",
+        "polaris-baseline-validation-report"
+      ]
+    },
+    {
+      "artifact_id": "polaris-baseline-bundle-release-note",
+      "path": "releases/polaris-baseline-bundle__release-note__v1.0.0.md",
+      "kind": "release-note",
+      "version": "1.0.0",
+      "status": "baseline-ready",
+      "depends_on": [
+        "polaris-baseline-index",
+        "polaris-baseline-dependency-map",
+        "polaris-baseline-validation-report",
+        "polaris-baseline-artifact-manifest"
+      ]
+    }
+  ]
+}

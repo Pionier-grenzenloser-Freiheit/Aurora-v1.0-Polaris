@@ -1,0 +1,89 @@
+{
+  "taxonomy_id": "policy-pack-ids",
+  "taxonomy_version": "1.0.0",
+  "field": "policy_pack",
+  "status": "convention_baseline",
+  "description": "Preliminary ID and naming convention for policy packs. This file defines identifiers only, not policy pack content. The policy_pack field remains controlled-open for the current baseline.",
+  "id_convention": {
+    "pattern": "^policy\\.[a-z0-9]+(?:-[a-z0-9]+)*\\.[a-z0-9]+(?:-[a-z0-9]+)*\\.v[0-9]+$",
+    "format": "policy.<framework-or-domain>.<profile>.v<major>",
+    "baseline_application": "Do not apply this pattern as a hard schema constraint while policy_pack: open remains valid.",
+    "class": "target_assumption"
+  },
+  "rules": [
+    {
+      "rule": "Use lowercase ASCII, digits and hyphens inside segments.",
+      "class": "target_assumption"
+    },
+    {
+      "rule": "Do not encode policy content or jurisdictional interpretation in the ID beyond framework/domain and profile.",
+      "class": "target_assumption"
+    },
+    {
+      "rule": "Use a major version suffix to allow later controlled policy-pack evolution.",
+      "class": "target_assumption"
+    }
+  ],
+  "examples": [
+    {
+      "policy_pack": "policy.eu-ai-act.high-risk.v1",
+      "name": "EU AI Act high-risk policy pack placeholder",
+      "basis": "EU AI Act and high-risk profile are stated in the Polaris source; pack content remains unspecified.",
+      "reference_class": "derived_from_source",
+      "id_class": "target_assumption",
+      "content_class": "open"
+    },
+    {
+      "policy_pack": "policy.hipaa.general.v1",
+      "name": "HIPAA general policy pack placeholder",
+      "basis": "HIPAA is stated in the Polaris source; pack content remains unspecified.",
+      "reference_class": "derived_from_source",
+      "id_class": "target_assumption",
+      "content_class": "open"
+    },
+    {
+      "policy_pack": "policy.sox.general.v1",
+      "name": "SOX general policy pack placeholder",
+      "basis": "SOX is stated in the Polaris source; pack content remains unspecified.",
+      "reference_class": "derived_from_source",
+      "id_class": "target_assumption",
+      "content_class": "open"
+    },
+    {
+      "policy_pack": "policy.iso-iec-38507.governance.v1",
+      "name": "ISO/IEC 38507 governance policy pack placeholder",
+      "basis": "ISO/IEC 38507 is stated in the Polaris source; pack content remains unspecified.",
+      "reference_class": "derived_from_source",
+      "id_class": "target_assumption",
+      "content_class": "open"
+    },
+    {
+      "policy_pack": "policy.ieee-7000.ethics.v1",
+      "name": "IEEE-7000-near ethics policy pack placeholder",
+      "basis": "IEEE-7000-near ethics checks are stated in the Polaris source; pack content remains unspecified.",
+      "reference_class": "derived_from_source",
+      "id_class": "target_assumption",
+      "content_class": "open"
+    },
+    {
+      "policy_pack": "policy.dsgvo.privacy.v1",
+      "name": "DSGVO privacy policy pack placeholder",
+      "basis": "DSGVO-related privacy controls are stated in the Polaris source; pack content remains unspecified.",
+      "reference_class": "derived_from_source",
+      "id_class": "target_assumption",
+      "content_class": "open"
+    }
+  ],
+  "closed": false,
+  "baseline_compatibility": {
+    "allowed_baseline_value": "open",
+    "rule": "policy_pack remains a non-empty open string in the current schema baseline.",
+    "class": "stated_in_source"
+  },
+  "open_points": [
+    {
+      "point": "Concrete policy pack contents and jurisdiction-specific control catalogues are open.",
+      "class": "open"
+    }
+  ]
+}
