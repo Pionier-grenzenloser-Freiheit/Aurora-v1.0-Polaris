@@ -69,14 +69,14 @@ This repository can be used as:
 
 ## Suggested reading order
 
-1. `docs/mvp-control-contract.md`
-2. `docs/mvp-architecture.md`
+1. `docs/baseline/aurora-polaris__mvp-control-contract.md`
+2. `docs/baseline/aurora-polaris__mvp-architecture.md`
 3. `schemas/`
 4. `taxonomies/`
 5. `module-registry/`
 6. `policy-decisions/`
 7. `mvp-events/`
-8. `docs/baseline/validation-report.md`
+8. `releases/polaris-baseline-validation-report__v1.0.0.md`
 
 ## Deliberately open areas
 

@@ -1,4 +1,4 @@
-Betriebsmodus: #StrategicThinker  
+Betriebsmodus: #StrategicThinker
 Hinweis: Nachfolgend ein **konzeptioneller Systementwurf** für Aurora v1.0 „Polaris“. Externe Systeme, APIs und Datenfeeds werden **nur als Integrationskonzept** beschrieben; es erfolgt **kein Live-Zugriff**.
 
 ## 1. Kontext- und Anforderungsanalyse
@@ -12,11 +12,11 @@ Aurora soll als **übergreifende, adaptive Multi-Agenten-KI-Plattform** funktion
 - dabei **Leistung, Compliance, Transparenz, Nachhaltigkeit und UX** gleichzeitig optimiert.
 
 ### Zentrale Anforderungen
-1. **Modularität:** neue Agenten/Module ohne Re-Architektur integrierbar  
-2. **Orchestrierung:** dynamische Auswahl, Planung und Koordination von Sub-Agenten  
-3. **Governance-first:** Compliance, Audit-Trail, Ethik, Release-Gates sind Kernbestandteile  
-4. **Selbstverbesserung:** RL, Behavioral Cloning, Prompt-Tuning, Drift-/Outlier-Erkennung  
-5. **Messbarkeit:** KPIs für Zykluszeit, Fehlerquote, Latenz, Energie, Transparenz, Responsible AI  
+1. **Modularität:** neue Agenten/Module ohne Re-Architektur integrierbar
+2. **Orchestrierung:** dynamische Auswahl, Planung und Koordination von Sub-Agenten
+3. **Governance-first:** Compliance, Audit-Trail, Ethik, Release-Gates sind Kernbestandteile
+4. **Selbstverbesserung:** RL, Behavioral Cloning, Prompt-Tuning, Drift-/Outlier-Erkennung
+5. **Messbarkeit:** KPIs für Zykluszeit, Fehlerquote, Latenz, Energie, Transparenz, Responsible AI
 6. **Sichere Skalierung:** Kubernetes, eventgetrieben, Canary, Auto-Rollback, Human-in-the-Loop
 
 ### Relevante Abhängigkeiten
@@ -174,29 +174,29 @@ Damit bleiben neue Module **plug-in-fähig**, versionierbar und auditierbar.
 ## 5. Orchestrierung, Optimierung und Lernschleifen
 
 ### 5.1 Standard-Ablauf je Anfrage
-1. **Intake:** Anfrage, Nutzerrolle, Kanal, Datenklassifikation erfassen  
-2. **Kontextanalyse:** NER/NEL, Ontologie-Mapping, Intent und Risikoklasse bestimmen  
-3. **Planung:** Polaris Core zerlegt die Aufgabe in Teilaufgaben  
-4. **Agentenselektion:** Agent Registry + Policy Engine wählen zulässige Agenten  
-5. **Wissensintegration:** Retrieval aus FAISS/PostgreSQL, 5-Minuten-Refresh oder eventgetrieben  
-6. **Ausführung:** Agenten arbeiten sequenziell oder parallel über Celery/RabbitMQ/Kafka  
-7. **Bewertung:** Confidence, Risiko, Compliance, Ethik, Sicherheit  
-8. **Freigabe/Eskalation:** ggf. Human-in-the-Loop  
-9. **Antwort + Audit:** Provenance, Logs, Entscheidungspfad  
+1. **Intake:** Anfrage, Nutzerrolle, Kanal, Datenklassifikation erfassen
+2. **Kontextanalyse:** NER/NEL, Ontologie-Mapping, Intent und Risikoklasse bestimmen
+3. **Planung:** Polaris Core zerlegt die Aufgabe in Teilaufgaben
+4. **Agentenselektion:** Agent Registry + Policy Engine wählen zulässige Agenten
+5. **Wissensintegration:** Retrieval aus FAISS/PostgreSQL, 5-Minuten-Refresh oder eventgetrieben
+6. **Ausführung:** Agenten arbeiten sequenziell oder parallel über Celery/RabbitMQ/Kafka
+7. **Bewertung:** Confidence, Risiko, Compliance, Ethik, Sicherheit
+8. **Freigabe/Eskalation:** ggf. Human-in-the-Loop
+9. **Antwort + Audit:** Provenance, Logs, Entscheidungspfad
 10. **Lernen:** Feedback, Tuning, Drift-/Outlier-Prüfung
 
 ### 5.2 Optimierungslogik
 Aurora optimiert nicht eindimensional, sondern entlang eines Zielfunktionsvektors:
 
-**Ziele:**  
-- Qualität ↑  
-- Relevanz ↑  
-- Compliance ↑  
-- Transparenz ↑  
-- Latenz ↓  
-- Kosten ↓  
-- Fehlerquote ↓  
-- CO₂/Energie ↓  
+**Ziele:**
+- Qualität ↑
+- Relevanz ↑
+- Compliance ↑
+- Transparenz ↑
+- Latenz ↓
+- Kosten ↓
+- Fehlerquote ↓
+- CO₂/Energie ↓
 
 **Methoden:**
 - **NSGA-II:** wählt Pareto-optimale Agentenketten, Prompt-Varianten und Modellpfade
@@ -253,10 +253,10 @@ Aurora optimiert nicht eindimensional, sondern entlang eines Zielfunktionsvektor
 - **Pen-Tests/CI-CD-Gates:** sicherheitsrelevante Releases werden automatisiert geblockt
 
 ### 6.3 Secure-Model-Releaser: Freigabestufen
-1. **Sandbox** – nur interne Tests  
-2. **Guarded Pilot** – kontrollierte Nutzergruppe  
-3. **Canary** – limitierter Produktivanteil  
-4. **Full Production** – nur nach Compliance-, Bias-, Security- und Drift-Freigabe  
+1. **Sandbox** – nur interne Tests
+2. **Guarded Pilot** – kontrollierte Nutzergruppe
+3. **Canary** – limitierter Produktivanteil
+4. **Full Production** – nur nach Compliance-, Bias-, Security- und Drift-Freigabe
 
 Pflichtartefakte:
 - Model Card

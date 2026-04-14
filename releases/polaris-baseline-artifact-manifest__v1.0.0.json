@@ -5,7 +5,7 @@
   "artifacts": [
     {
       "artifact_id": "polaris-taxonomy-pack",
-      "path": "polaris-taxonomy-pack__release-note__v1.0.0.md",
+      "path": "releases/polaris-taxonomy-pack__release-note__v1.0.0.md",
       "kind": "release-note",
       "version": "1.0.0",
       "status": "baseline-ready",
@@ -16,7 +16,7 @@
     },
     {
       "artifact_id": "module-type-enum",
-      "path": "module-type.enum.json",
+      "path": "taxonomies/module-type.enum.json",
       "kind": "taxonomy",
       "version": "1.0.0",
       "status": "baseline-ready",
@@ -26,7 +26,7 @@
     },
     {
       "artifact_id": "severity-levels-enum",
-      "path": "severity-levels.enum.json",
+      "path": "taxonomies/severity-levels.enum.json",
       "kind": "taxonomy",
       "version": "1.0.0",
       "status": "baseline-ready",
@@ -36,7 +36,7 @@
     },
     {
       "artifact_id": "policy-pack-ids",
-      "path": "policy-pack-ids.json",
+      "path": "taxonomies/policy-pack-ids.json",
       "kind": "taxonomy",
       "version": "1.0.0",
       "status": "baseline-ready",
@@ -46,7 +46,7 @@
     },
     {
       "artifact_id": "actor-class-taxonomy",
-      "path": "actor-taxonomy.json",
+      "path": "taxonomies/actor-taxonomy.json",
       "kind": "taxonomy",
       "version": "1.0.0",
       "status": "baseline-ready",
@@ -56,7 +56,7 @@
     },
     {
       "artifact_id": "risk-score-model",
-      "path": "risk-score-model.md",
+      "path": "taxonomies/risk-score-model.md",
       "kind": "taxonomy-note",
       "version": "1.0.0",
       "status": "baseline-ready",
@@ -66,7 +66,7 @@
     },
     {
       "artifact_id": "integrity-marker-format",
-      "path": "integrity-marker-format.md",
+      "path": "taxonomies/integrity-marker-format.md",
       "kind": "taxonomy-note",
       "version": "1.0.0",
       "status": "baseline-ready",
@@ -76,7 +76,7 @@
     },
     {
       "artifact_id": "polaris-mvp-module-registry-pack",
-      "path": "polaris-mvp-module-registry-pack__release-note__v1.0.0.md",
+      "path": "releases/polaris-mvp-module-registry-pack__release-note__v1.0.0.md",
       "kind": "release-note",
       "version": "1.0.0",
       "status": "baseline-ready",
@@ -97,7 +97,7 @@
     },
     {
       "artifact_id": "polaris-mvp-policy-decision-pack",
-      "path": "polaris-mvp-policy-decision-pack__release-note__v1.0.0.md",
+      "path": "releases/polaris-mvp-policy-decision-pack__release-note__v1.0.0.md",
       "kind": "release-note",
       "version": "1.0.0",
       "status": "baseline-ready",
@@ -119,7 +119,7 @@
     },
     {
       "artifact_id": "polaris-mvp-event-pack",
-      "path": "polaris-mvp-event-pack__release-note__v1.0.0.md",
+      "path": "releases/polaris-mvp-event-pack__release-note__v1.0.0.md",
       "kind": "release-note",
       "version": "1.0.0",
       "status": "baseline-ready",
@@ -142,7 +142,7 @@
     },
     {
       "artifact_id": "polaris-baseline-index",
-      "path": "polaris-baseline-index__v1.0.0.md",
+      "path": "releases/polaris-baseline-index__v1.0.0.md",
       "kind": "baseline-index",
       "version": "1.0.0",
       "status": "baseline-ready",
@@ -155,7 +155,7 @@
     },
     {
       "artifact_id": "polaris-baseline-dependency-map",
-      "path": "polaris-baseline-dependency-map__v1.0.0.md",
+      "path": "releases/polaris-baseline-dependency-map__v1.0.0.md",
       "kind": "dependency-map",
       "version": "1.0.0",
       "status": "baseline-ready",
@@ -165,7 +165,7 @@
     },
     {
       "artifact_id": "polaris-baseline-validation-report",
-      "path": "polaris-baseline-validation-report__v1.0.0.md",
+      "path": "releases/polaris-baseline-validation-report__v1.0.0.md",
       "kind": "validation-report",
       "version": "1.0.0",
       "status": "baseline-ready",
@@ -177,7 +177,7 @@
     },
     {
       "artifact_id": "polaris-baseline-artifact-manifest",
-      "path": "polaris-baseline-artifact-manifest__v1.0.0.json",
+      "path": "releases/polaris-baseline-artifact-manifest__v1.0.0.json",
       "kind": "artifact-manifest",
       "version": "1.0.0",
       "status": "baseline-ready",
@@ -189,7 +189,7 @@
     },
     {
       "artifact_id": "polaris-baseline-bundle-release-note",
-      "path": "polaris-baseline-bundle__release-note__v1.0.0.md",
+      "path": "releases/polaris-baseline-bundle__release-note__v1.0.0.md",
       "kind": "release-note",
       "version": "1.0.0",
       "status": "baseline-ready",

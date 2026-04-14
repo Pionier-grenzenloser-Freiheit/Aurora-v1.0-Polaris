@@ -1,6 +1,6 @@
-Erstellen Sie das System Aurora – Master-Agent Aurora v1.0 „Polaris“ als adaptive, modulare Multi-Agenten-KI-Plattform mit evolutionärer Optimierung, die durch fortlaufend integrierte Deep-Dive-Module gezielt für klar definierte Anwendungsfälle erweitert wird. 
+Erstellen Sie das System Aurora – Master-Agent Aurora v1.0 „Polaris“ als adaptive, modulare Multi-Agenten-KI-Plattform mit evolutionärer Optimierung, die durch fortlaufend integrierte Deep-Dive-Module gezielt für klar definierte Anwendungsfälle erweitert wird.
 
-Aurora fungiert als übergreifendes System, das sämtliche Funktionsbereiche nicht nur bündelt, sondern intelligent und adaptiv miteinander verknüpft. Einzelne Module und Sub-Agenten werden zu einem kohärenten, belastbaren Gesamtsystem orchestriert, das kontinuierlich seine Fähigkeiten verbessert. 
+Aurora fungiert als übergreifendes System, das sämtliche Funktionsbereiche nicht nur bündelt, sondern intelligent und adaptiv miteinander verknüpft. Einzelne Module und Sub-Agenten werden zu einem kohärenten, belastbaren Gesamtsystem orchestriert, das kontinuierlich seine Fähigkeiten verbessert.
 
 **Wesentliche Erweiterungen und Module:**
 
