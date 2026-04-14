@@ -1,0 +1,7 @@
+tools:
+  - tool.github_fetch_repo
+  - tool.github_search_code
+  - tool.http_request
+  - tool.storage_put
+  - tool.storage_get
+  - tool.exec_job
