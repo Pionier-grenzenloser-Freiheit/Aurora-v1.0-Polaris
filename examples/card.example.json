@@ -1,0 +1,43 @@
+{
+  "cardId": "card-variant-1",
+  "title": "Guided Briefing Canvas",
+  "type": "variant",
+  "fit": ["High alignment with discovery needs"],
+  "basedOnBriefing": { "recordId": "brief-001", "version": 1 },
+  "outcome": {
+    "goal": "Capture structured requirements quickly",
+    "successCriteria": ["Users complete briefing in under 10 minutes"]
+  },
+  "scope": {
+    "must": ["Two-step flow", "Editable cards"],
+    "should": ["Export to Markdown"],
+    "could": ["CSV export"],
+    "outOfScope": ["Automated build pipeline"]
+  },
+  "tech": {
+    "frontend": ["React", "TypeScript"],
+    "backend": ["Node.js"],
+    "infrastructure": ["Vercel"]
+  },
+  "effort": { "estimate": "4-6 weeks", "confidence": "medium" },
+  "pitch": "A guided canvas that captures requirements and generates clear variants.",
+  "risks": ["Scope creep if clarification is incomplete"],
+  "userStories": [
+    {
+      "story": "As a PM, I want guided questions so I can capture requirements faster.",
+      "acceptanceCriteria": ["Prompts cover goals, UX/UI, and constraints"]
+    }
+  ],
+  "securityPrivacy": ["Role-based access", "Audit log"],
+  "integrations": [
+    { "name": "Notion", "type": "export", "priority": 1 }
+  ],
+  "rolesAgents": [
+    { "role": "Frontend", "skills": ["React", "UX"] }
+  ],
+  "kpis": [
+    { "kpi": "Completion rate", "goal": "> 60%" }
+  ],
+  "constraints": ["Limited engineering team"],
+  "rationale": "Matches the need for a lightweight, structured briefing workflow."
+}

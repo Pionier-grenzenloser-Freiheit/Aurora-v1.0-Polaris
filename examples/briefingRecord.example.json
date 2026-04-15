@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "recordId": "brief-001",
+    "title": "Interactive Web App Discovery",
+    "status": "draft",
+    "createdAt": "2024-01-15T10:00:00Z",
+    "lastUpdatedAt": "2024-01-15T10:00:00Z",
+    "owner": { "name": "Alex Doe", "role": "Product Lead", "email": "alex@example.com" },
+    "contributors": [],
+    "version": {
+      "current": 1,
+      "history": [
+        { "v": 1, "by": "Alex Doe", "at": "2024-01-15T10:00:00Z", "changeSummary": "Initial draft" }
+      ]
+    },
+    "tags": ["discovery", "web-app"],
+    "priority": "P2"
+  },
+  "goals": ["Collect initial requirements for a web app"],
+  "targetAudience": ["Product managers", "Founders"],
+  "uxUi": {
+    "requirements": ["Simple step-by-step canvas"],
+    "platforms": ["web"]
+  },
+  "devices": ["desktop", "tablet"],
+  "a11y": ["WCAG 2.1 AA"],
+  "performance": ["Fast initial load"],
+  "compliance": ["GDPR"],
+  "security": ["OAuth2 for API access"],
+  "integrations": [
+    { "name": "Notion", "type": "export", "priority": 1, "required": false }
+  ],
+  "monetization": ["SaaS subscription"],
+  "analytics": [
+    { "kpi": "Conversion rate", "goal": "> 15%" }
+  ],
+  "constraints": ["MVP in 6 weeks"],
+  "openQuestions": ["Exact user volume?"],
+  "risks": ["Unclear scope"],
+  "assets": []
+}
