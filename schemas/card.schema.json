@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aurora.example/schemas/card.schema.json",
+  "title": "Card",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "cardId",
+    "title",
+    "type",
+    "fit",
+    "basedOnBriefing",
+    "outcome",
+    "scope",
+    "tech",
+    "effort",
+    "pitch",
+    "risks",
+    "userStories",
+    "securityPrivacy",
+    "integrations",
+    "rolesAgents",
+    "kpis",
+    "constraints",
+    "rationale"
+  ],
+  "properties": {
+    "cardId": { "type": "string" },
+    "title": { "type": "string" },
+    "type": { "type": "string" },
+    "fit": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "basedOnBriefing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["recordId", "version"],
+      "properties": {
+        "recordId": { "type": "string" },
+        "version": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["goal", "successCriteria"],
+      "properties": {
+        "goal": { "type": "string" },
+        "successCriteria": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["must", "should", "could", "outOfScope"],
+      "properties": {
+        "must": { "type": "array", "items": { "type": "string" } },
+        "should": { "type": "array", "items": { "type": "string" } },
+        "could": { "type": "array", "items": { "type": "string" } },
+        "outOfScope": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "tech": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frontend", "backend", "infrastructure"],
+      "properties": {
+        "frontend": { "type": "array", "items": { "type": "string" } },
+        "backend": { "type": "array", "items": { "type": "string" } },
+        "infrastructure": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "effort": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["estimate", "confidence"],
+      "properties": {
+        "estimate": { "type": "string" },
+        "confidence": { "type": "string", "enum": ["low", "medium", "high"] }
+      }
+    },
+    "pitch": { "type": "string" },
+    "risks": { "type": "array", "items": { "type": "string" } },
+    "userStories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["story", "acceptanceCriteria"],
+        "properties": {
+          "story": { "type": "string" },
+          "acceptanceCriteria": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "securityPrivacy": { "type": "array", "items": { "type": "string" } },
+    "integrations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "type"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string" },
+          "priority": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "rolesAgents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "skills"],
+        "properties": {
+          "role": { "type": "string" },
+          "skills": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "kpis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kpi", "goal"],
+        "properties": {
+          "kpi": { "type": "string" },
+          "goal": { "type": "string" }
+        }
+      }
+    },
+    "constraints": { "type": "array", "items": { "type": "string" } },
+    "rationale": { "type": "string" }
+  }
+}

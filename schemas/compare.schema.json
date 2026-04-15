@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aurora.example/schemas/compare.schema.json",
+  "title": "CompareView",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["compare"],
+  "properties": {
+    "compare": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["baseCardId", "targetCardId", "diff"],
+      "properties": {
+        "baseCardId": { "type": "string" },
+        "targetCardId": { "type": "string" },
+        "diff": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["field", "base", "target"],
+            "properties": {
+              "field": { "type": "string" },
+              "base": {},
+              "target": {}
+            }
+          }
+        },
+        "unchanged": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["field", "value"],
+            "properties": {
+              "field": { "type": "string" },
+              "value": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

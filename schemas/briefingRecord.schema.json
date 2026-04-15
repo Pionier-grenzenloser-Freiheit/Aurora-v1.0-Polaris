@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aurora.example/schemas/briefingRecord.schema.json",
+  "title": "BriefingRecord",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "meta",
+    "goals",
+    "targetAudience",
+    "uxUi",
+    "devices",
+    "a11y",
+    "performance",
+    "compliance",
+    "security",
+    "integrations",
+    "monetization",
+    "analytics",
+    "constraints",
+    "openQuestions",
+    "risks",
+    "assets"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recordId",
+        "title",
+        "status",
+        "createdAt",
+        "lastUpdatedAt",
+        "owner",
+        "contributors",
+        "version",
+        "tags",
+        "priority"
+      ],
+      "properties": {
+        "recordId": { "type": "string" },
+        "title": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "incomplete", "complete"]
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "lastUpdatedAt": { "type": "string", "format": "date-time" },
+        "owner": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "role", "email"],
+          "properties": {
+            "name": { "type": "string" },
+            "role": { "type": "string" },
+            "email": { "type": "string", "format": "email" }
+          }
+        },
+        "contributors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "role"],
+            "properties": {
+              "name": { "type": "string" },
+              "role": { "type": "string" },
+              "email": { "type": "string", "format": "email" }
+            }
+          }
+        },
+        "version": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["current", "history"],
+          "properties": {
+            "current": { "type": "integer", "minimum": 1 },
+            "history": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["v", "by", "at"],
+                "properties": {
+                  "v": { "type": "integer", "minimum": 1 },
+                  "by": { "type": "string" },
+                  "at": { "type": "string", "format": "date-time" },
+                  "changeSummary": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "priority": { "type": "string", "enum": ["P1", "P2", "P3"] }
+      }
+    },
+    "goals": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "targetAudience": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "uxUi": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requirements", "platforms"],
+      "properties": {
+        "requirements": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "platforms": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "devices": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["desktop", "mobile", "tablet"]
+      }
+    },
+    "a11y": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "performance": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "compliance": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "security": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "integrations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "type", "required"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string" },
+          "priority": { "type": "integer", "minimum": 1 },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "monetization": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "analytics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kpi", "goal"],
+        "properties": {
+          "kpi": { "type": "string" },
+          "goal": { "type": "string" }
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "openQuestions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "risks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "url"],
+        "properties": {
+          "type": { "type": "string" },
+          "url": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    }
+  }
+}
