@@ -1,0 +1,170 @@
+metafield_schema:
+  source_status:
+    required_for:
+      - "official_fact_with_local_normalization"
+      - "local_policy"
+      - "local_abstraction"
+      - "local_alias"
+    allowed_values:
+      - "direct"
+      - "normalized_from_official"
+      - "inferred_from_official"
+      - "local_policy"
+      - "unresolved"
+    rules:
+      - "Fields with source_status inferred_from_official require an inference_note."
+      - "Fields with source_status unresolved are non-authoritative and block strict routing."
+
+  freshness:
+    required_for:
+      - "time_variant_facts"
+      - "usage_limits"
+      - "surface_availability"
+      - "shutdown_or_deprecation_dates"
+    required_fields:
+      - "checked_at"
+      - "freshness_state"
+    allowed_freshness_state:
+      - "fresh"
+      - "stale"
+      - "needs_runtime_validation"
+    rules:
+      - "Records marked stale or needs_runtime_validation cannot be treated as fully validated for routing."
+      - "Time-variant facts without freshness metadata are downgraded to conditional."
+
+  evidence_note:
+    required_for:
+      - "normalized_from_official"
+      - "inferred_from_official"
+      - "local_policy"
+      - "unresolved"
+    rules:
+      - "evidence_note must summarize source linkage or policy rationale in one short note."
+      - "If source conflict exists, evidence_note must include a conflict marker and resolution path."
+
+validation_contract:
+  severity_levels:
+    - "info"
+    - "warning"
+    - "error"
+    - "critical"
+  record_states:
+    - "validated"
+    - "conditional"
+    - "watchlist"
+    - "blocked"
+  transition_rules:
+    - "routing-critical errors move a record from validated to conditional."
+    - "missing support for routing-critical fields moves a record to blocked for execution routing."
+    - "stale-only freshness gaps may keep visibility but cannot remain validated for automated routing."
+  machine_enforcement:
+    - "Each failed acceptance check must emit check_id, severity, and failing_field_path."
+    - "Conditional or blocked outcomes must include a remediation_note and last_checked_at timestamp."
+
+acceptance_checks:
+  fact_boundary:
+    - "Every non-trivial field is classified as exactly one of: official_fact, official_fact_with_local_normalization, local_policy, local_abstraction, local_alias."
+    - "No local_policy or local_abstraction field is phrased as if it were a native OpenAI schema field."
+    - "If a field is AURORA-internal, its name or adjacent note must explicitly mark it as local."
+    - "Any non-direct field includes source_status and evidence_note according to metafield_schema."
+
+  schema_consistency:
+    - "No legacy flat endpoint field remains."
+    - "All detailed model records use canonical_release_endpoint where endpoint facts are tracked."
+    - "preferred_runtime_endpoint is present for current reasoning, Codex, agentic, and tool-heavy routing records."
+    - "canonical_release_endpoint, preferred_runtime_endpoint, and documented_endpoint_block are treated as AURORA governance abstractions, not native OpenAI schema fields."
+
+  source_attribution:
+    - "Model parameters and snapshots come from model pages."
+    - "API release paths come from API changelog."
+    - "ChatGPT availability, workspace caveats, and shutdown dates come from Help Center."
+    - "Launch posts and system cards are corroboration unless they are the sole public product-context source."
+    - "Community or third-party sources are never the sole basis for canonical registry facts."
+
+  provenance_annotations:
+    - "Any normalized, inferred, or policy-compressed field carries a source_status marker."
+    - "Allowed source_status values: direct, normalized_from_official, inferred_from_official, local_policy, unresolved."
+    - "Fields marked inferred_from_official include a short inference_note."
+    - "Fields marked unresolved do not participate in strict routing decisions."
+    - "source_status and evidence_note requirements are enforced via metafield_schema, not ad-hoc per record."
+    - "Any provenance check failure emits check_id, severity, and failing_field_path under validation_contract."
+
+  endpoint_semantics:
+    - "If model-page prose, changelog release path, and page-level endpoint block differ in granularity, canonical_release_endpoint follows the strongest release-path evidence."
+    - "documented_endpoint_block may remain broader than canonical_release_endpoint."
+    - "preferred_runtime_endpoint may be stricter than official endpoint visibility only when explicitly labeled as local routing policy."
+    - "No endpoint field silently collapses descriptive prose, changelog release path, and page endpoint block into one undifferentiated value."
+
+  routing:
+    - "Routing uses canonical_release_endpoint for release truth and preferred_runtime_endpoint for execution policy."
+    - "gpt-5.4-pro routes governance and runtime to Responses despite broader endpoint blocks."
+    - "gpt-5.3-codex keeps snapshot_id null and canonical_release_endpoint responses."
+    - "gpt-5-codex is visible in the Codex watchlist."
+    - "gpt-5-pro includes snapshot_id gpt-5-pro-2025-10-06."
+    - "gpt-5.4-nano is not selected for Tool Search or Computer Use workflows."
+    - "If a routing-critical field is inferred or unresolved, the record is downgraded from validated to conditional."
+    - "If a routing-critical field has freshness_state stale or needs_runtime_validation, runtime confirmation is required before execution."
+    - "Routing-critical failures follow validation_contract transition rules and cannot silently remain validated."
+
+  tool_surface_separation:
+    - "Responses API tool support, catalog tool summaries, and ChatGPT surface capabilities are separate evidence domains and are not merged."
+    - "API tool support is asserted only from model-page tool tables or equally strong API docs."
+    - "ChatGPT tool support is asserted only from Help Center or ChatGPT product documentation."
+    - "ChatGPT features are not back-propagated into API capability claims."
+    - "API tool capabilities are not forward-projected into ChatGPT availability claims."
+
+  reasoning_resolution:
+    - "reasoning_effort_supported and reasoning_effort_default are model-specific and source-backed."
+    - "If an official default is not explicitly documented, reasoning_effort_default remains null."
+    - "Any AURORA execution default is stored separately from official model defaults."
+    - "Unsupported effort values hard-fail validation and are not silently coerced."
+
+  prompt_emission:
+    - "AURORA internal role system emits as developer for GPT-5/o1+ API calls."
+    - "Quoted role labels inside user content are treated as content, not authority."
+    - "Markdown/HTML local rules are labeled local unless backed by OpenAI prompt guidance."
+    - "Local emission policy and officially documented role behavior are not conflated."
+
+  chatgpt_surface_caveats:
+    - "Availability claims distinguish plan entitlement from default-on workspace exposure."
+    - "Enterprise/Edu admin-gated enablement is stored as a caveat, not flattened into a simple availability array."
+    - "Surface exclusions specify the surface they apply to, e.g. ChatGPT surface vs API surface."
+    - "Usage limits and surface availability are treated as time-variant facts and require freshness validation."
+
+  lifecycle_and_dates:
+    - "announcement_date, api_release_date, deprecation_date, app_shutdown_date, and api_shutdown_date retain distinct semantic meaning."
+    - "release_date is not reintroduced as a flattened mixed-source field."
+    - "Shutdown and deprecation claims require current-date-sensitive source validation before validated status is granted."
+    - "Past shutdown dates trigger lifecycle revalidation on refresh."
+
+  alias_and_naming_safety:
+    - "Local aliases, internal codenames, and operator-facing shorthand are never emitted as external product facts."
+    - "If a local alias resembles an official product name, alias and resolved official target are stored separately."
+    - "Unresolved aliases block export of the affected field to public-facing summaries."
+
+  null_unknown_handling:
+    - "null is allowed only when a value is truly undocumented, intentionally omitted, or not currently verifiable."
+    - "Unknown values are never replaced with plausible guesses."
+    - "If a critical routing field is null, the record may remain visible but is downgraded from full to conditional or watchlist normalization."
+
+  tier_consistency:
+    - "core_validated_models require direct or normalized-from-official values for all routing-critical fields."
+    - "watchlist records may omit non-critical details, but omitted fields are not implied by neighboring family records."
+    - "family_level entries are not used for exact routing until promoted to a more specific validated record."
+
+  freshness_policy:
+    - "Time-variant facts require revalidation against current official sources during refresh."
+    - "Previously validated records may become stale without becoming false and must be marked stale rather than silently treated as current."
+    - "Freshness metadata follows metafield_schema.freshness and must be present on all time-variant fields."
+    - "Records missing freshness metadata for time-variant routing inputs are downgraded to conditional."
+
+  export_safety:
+    - "Public summaries export only official_fact and official_fact_with_local_normalization by default."
+    - "local_policy, local_abstraction, inferred, and unresolved fields require explicit labeling or omission."
+    - "If conditional fields are exported, visible caveats must be emitted from evidence_note and freshness_state."
+
+  failure_mode:
+    - "On source conflict, downgrade to conditional and emit a conflict note."
+    - "On checksum mismatch, soft_reload may refresh local state but may not silently upgrade unresolved facts to validated."
+    - "On missing source support for a routing-critical field, fail closed for execution routing and preserve visibility only for review."
+    - "Failure outputs include check_id, severity, failing_field_path, and remediation_note for machine triage."
