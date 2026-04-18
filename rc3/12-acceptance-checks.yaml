@@ -1,4 +1,64 @@
+metafield_schema:
+  source_status:
+    type: "enum"
+    allowed_values:
+      - "direct"
+      - "normalized_from_official"
+      - "inferred_from_official"
+      - "local_policy"
+      - "unresolved"
+    required_for:
+      - "all normalized fields"
+      - "all inferred fields"
+      - "all local policy fields"
+      - "all unresolved fields"
+      - "all routing-critical fields"
+    semantics:
+      direct: "Value is directly supported by the strongest allowed official source for that field class."
+      normalized_from_official: "Value is compressed, renamed, or structurally normalized from official source text without changing meaning."
+      inferred_from_official: "Value is not stated verbatim but is a constrained inference from official source material."
+      local_policy: "Value is an AURORA-internal governance or routing rule and not an official product fact."
+      unresolved: "Value is currently ambiguous, conflicting, or not yet strong enough for validated routing."
+
+  freshness:
+    type: "object"
+    required_fields:
+      - "state"
+      - "last_verified_at"
+    optional_fields:
+      - "max_age_hint_days"
+      - "revalidation_trigger"
+    state_allowed_values:
+      - "current"
+      - "stale"
+      - "needs_runtime_validation"
+      - "historical"
+    rules:
+      - "Time-variant facts must carry freshness."
+      - "Fields used for strict routing may not be treated as current when freshness.state is stale or needs_runtime_validation without an explicit conditional downgrade."
+      - "historical is valid for archival or shutdown facts that are no longer expected to change except by correction."
+
+  evidence_note:
+    type: "string"
+    min_length: 1
+    max_length: 500
+    required_when:
+      - "source_status is normalized_from_official"
+      - "source_status is inferred_from_official"
+      - "source_status is unresolved"
+      - "freshness.state is not current"
+      - "a field is downgraded to conditional"
+      - "multiple official sources differ in wording or granularity"
+    guidance:
+      - "Explain the evidence basis or caveat in one short audit-friendly sentence."
+      - "Do not restate the whole source; summarize the exact reason the field is normalized, inferred, stale, or conditional."
+
 acceptance_checks:
+  metadata_schema:
+    - "source_status, freshness, and evidence_note are treated as explicit AURORA metafields, not incidental comments."
+    - "Routing-critical, normalized, inferred, local-policy, and unresolved fields carry metafields according to metafield_schema."
+    - "Metafields use only allowed enum values and required subfields."
+
   fact_boundary:
     - "Every non-trivial field is classified as exactly one of: official_fact, official_fact_with_local_normalization, local_policy, local_abstraction, local_alias."
     - "No local_policy or local_abstraction field is phrased as if it were a native OpenAI schema field."
@@ -20,7 +80,8 @@ acceptance_checks:
   provenance_annotations:
     - "Any normalized, inferred, or policy-compressed field carries a source_status marker."
     - "Allowed source_status values: direct, normalized_from_official, inferred_from_official, local_policy, unresolved."
-    - "Fields marked inferred_from_official include a short inference_note."
+    - "Fields marked direct do not require evidence_note unless another rule requires it."
+    - "Fields marked normalized_from_official, inferred_from_official, or unresolved include an evidence_note."
     - "Fields marked unresolved do not participate in strict routing decisions."
 
   endpoint_semantics:
@@ -37,6 +98,7 @@ acceptance_checks:
     - "gpt-5-pro includes snapshot_id gpt-5-pro-2025-10-06."
     - "gpt-5.4-nano is not selected for Tool Search or Computer Use workflows."
     - "If a routing-critical field is inferred or unresolved, the record is downgraded from validated to conditional."
+    - "If freshness.state is stale or needs_runtime_validation for a routing-critical field, the record is downgraded from validated to conditional unless runtime validation succeeds."
 
   tool_surface_separation:
     - "Responses API tool support, catalog tool summaries, and ChatGPT surface capabilities are separate evidence domains and are not merged."
@@ -86,11 +148,15 @@ acceptance_checks:
 
   freshness_policy:
     - "Time-variant facts require revalidation against current official sources during refresh."
+    - "freshness.state uses only: current, stale, needs_runtime_validation, historical."
+    - "freshness.last_verified_at is required wherever freshness is present."
     - "Previously validated records may become stale without becoming false and must be marked stale rather than silently treated as current."
+    - "Non-current freshness requires an evidence_note when the field remains exported or visible for review."
 
   export_safety:
     - "Public summaries export only official_fact and official_fact_with_local_normalization by default."
     - "local_policy, local_abstraction, inferred, and unresolved fields require explicit labeling or omission."
+    - "If a public summary includes a non-direct field, the corresponding evidence_note or an equivalent explicit caveat must remain visible."
 
   failure_mode:
     - "On source conflict, downgrade to conditional and emit a conflict note."
